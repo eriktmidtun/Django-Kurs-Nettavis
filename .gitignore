@@ -1,1 +1,9 @@
+#vnalig navn på virtualenvironment mappen
 venv/
+
+#lokal test-database
+*.sqlite3
+
+# Cached filer
+__pycache__/
+*.pyc

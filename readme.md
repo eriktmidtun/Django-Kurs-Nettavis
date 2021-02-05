@@ -50,3 +50,21 @@ pip freeze > requirements.txt
 Da vil alle pakker du har installert på det utviklingsmiljøet du er i komme med i txt filen.
 
 Vi vil ikke ha med alle ekstra pakkene i git koden vår så vi legger inn "venv/" i .gitignore filen slik at den blir ignorert av git.
+
+## Django
+Når django er installert med pip kan en kjøre 
+```bash
+django-admin startproject PROSJEKTNAVN
+```
+Da vil Djano sette opp de viktigste filene for deg. Filene som blir laget da er manage.py og alle filene som ligger i app/.
+
+En kan da kjøre
+```bash
+python manage.py runserver
+```
+for å starte opp serveren. Da får man opp Django sin startpage. i terminalen står det at du har unaplied migrations. Det betyr at databasen ikke er satt opp. Om du kjører 
+```bash
+python manage.py migrate
+```
+setter du opp en SQlite3 database. Dette er bare en fil (db.sqlite3) og bør bare brukes til utvikling. Denne kan også være lurt å ha i .gitignore.
+Du vil også få en mappe __pychache__ som inneholder .pyc filer. Disse er cached kompilerte filer og skal ikke være med i repositoriet. Legg dette inn i .gitignore.
