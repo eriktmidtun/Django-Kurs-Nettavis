@@ -87,6 +87,13 @@ I filen app/urls.py ser man urlpattern til "admin/". om man endrer "admin/" her 
 
 i app/settings.py er det mye viktig. DEBUG skal alltid være False i production og SECRET_KEY må byttes ut. En grei ting å gjøre er å lese disse fra envirnoment variabler. Dette kan gjøre med dotenv eller decouple. En må da lage en .env fil og legge inn disse verdiene når en skal kjøre server eller laste inn environment variabler på andre måter som gitlab variabler.
 
+Eksempel .env:
+```bash
+#.env
+
+DEBUG=True
+SECRET_KEY='fiojeaiofjoaekf0+0I9I98FU4RJKFA9EJF94AJF'
+```
 En kan også ha ulike filer for settings og spesifisere hvilken du skal bruke når du kjører serveren
 
 ```bash

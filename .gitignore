@@ -7,3 +7,6 @@ venv/
 # Cached filer
 __pycache__/
 *.pyc
+
+# environment variabler
+.env
