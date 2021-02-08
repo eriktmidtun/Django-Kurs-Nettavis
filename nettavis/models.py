@@ -18,5 +18,5 @@ class Artikkel(models.Model):
     brodtekst = models.TextField('Brødtekst')
 
     def __str__(self):
-        return self.title
+        return self.tittel
     

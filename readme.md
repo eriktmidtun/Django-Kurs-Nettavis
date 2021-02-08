@@ -128,3 +128,6 @@ python manage.py migrate
 Da er det laget en tabell med navn artikkel i databasen. Per nå har vi ingen måte å opprette nye artikkler eller se eksisterende.
 
 For å gi mulighet for å opprette/slette/redigere artikler i admin panelet må vi registrere modellen i filen admin.py.
+
+### Laste opp bilder
+Om vi prøver å laste opp et bilde i adminpanelet vil vi få en feil. Dette er fordi vi ikke har satt opp urlpattern for statiske filer eller opplastninger. Vi kan legge til url patterns for statiske filer i urls. vi kan også sette hvor vi vil at opplastede filer skal lagres i settings med MEDIA_ROOT.
