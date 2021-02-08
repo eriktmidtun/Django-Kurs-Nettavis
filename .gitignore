@@ -1,5 +1,8 @@
-#vnalig navn på virtualenvironment mappen
+#vanlig navn på virtualenvironment mappen
 venv/
+
+# fjeren lokale utviklingssettings
+.vscode/
 
 #lokal test-database
 *.sqlite3

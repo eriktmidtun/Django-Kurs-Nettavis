@@ -101,3 +101,30 @@ python manage.py runserver --settings=app.settings
 ```
 
 ALLOWED_HOST sier hvem som kan snakke med serveren.
+
+## Django-admin startapp
+
+om man kjører kommandoen
+
+```bash
+django-admin startapp APP-NAVN
+```
+lager django en ny app (eller python package) som fungerer som en modul.
+Her er det viktig å legge inn den nye appen du lagde i settings.py i listen INSTALLED_APPS
+
+Django lager da en ny mappe med appnavnet ("nettavis") og legger til en del filer.
+models.py er hvor en definerer django sine database modeller.
+En burde bruke django sine modeller istedenfor å bruke egne SQL queries. Dette er mer sikkert og det gjøre det enklere å bruke og bytte mellom databasetyper.
+
+For å bruke de nye modellene må en få django til å opprette databasetabeller for deg. 
+```bash
+python manage.py makemigrations
+```
+Dette legger nye migration filer i nettavis/migrations
+For å utføre disse migrations kjører en 
+```bash
+python manage.py migrate
+```
+Da er det laget en tabell med navn artikkel i databasen. Per nå har vi ingen måte å opprette nye artikkler eller se eksisterende.
+
+For å gi mulighet for å opprette/slette/redigere artikler i admin panelet må vi registrere modellen i filen admin.py.
