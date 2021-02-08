@@ -131,3 +131,6 @@ For å gi mulighet for å opprette/slette/redigere artikler i admin panelet må 
 
 ### Laste opp bilder
 Om vi prøver å laste opp et bilde i adminpanelet vil vi få en feil. Dette er fordi vi ikke har satt opp urlpattern for statiske filer eller opplastninger. Vi kan legge til url patterns for statiske filer i urls. vi kan også sette hvor vi vil at opplastede filer skal lagres i settings med MEDIA_ROOT.
+
+## Django Templates
+Django har et eget språk for å generere HTML filer dynamisk. For å bruke dette må en opprette en mappestruktur med html filer inne i appen du vil lage template for. For oss blir det "nettavis/templates/nettavis/index.html". Må så si hvor templates ligger i settings TEMPLATES DIRS. I filen views.py definerer vi en view som tar inn en request og returnerer en html-fil. For at vi skal kunne komme til denne filen må vi oppdatere url patterns i app/urls.py med viewet vi nettop laget.
