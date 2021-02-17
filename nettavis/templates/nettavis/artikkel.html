@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{artikkel.tittel}}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <nav>Nettavis kommer her <a href="{% url 'nattavis' %}">Hjem</a></nav>
+    <section style="margin: 20px;" >
+        <img src="/media/{{artikkel.bilde}}">
+        <br />
+        <i>{{artikkel.bilde_kredittering}}</i>
+        <h1>{{artikkel.tittel}}</h1>
+        <h3>{{artikkel.ingress}}</h3>
+        <i>
+        <p>Skrevet av <b>{{artikkel.skrevet_av}}</b></p>
+        <p>Publisert: {{artikkel.formater_publisert}}</p><p> Sist oppdatert:{{artikkel.formater_sist_oppdatert}}</p> 
+        </i>
+        <p>{{artikkel.brodtekst}}</p>
+    </section>
+</body>
+</html>

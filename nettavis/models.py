@@ -20,3 +20,8 @@ class Artikkel(models.Model):
     def __str__(self):
         return self.tittel
     
+    def formater_publisert(self):
+        return self.publisert.strftime('%d. %B %Y, %H:%M')
+
+    def formater_sist_oppdatert(self):
+        return self.sist_oppdatert.strftime('%d. %B %Y, %H:%M')    

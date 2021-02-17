@@ -134,3 +134,25 @@ Om vi prøver å laste opp et bilde i adminpanelet vil vi få en feil. Dette er 
 
 ## Django Templates
 Django har et eget språk for å generere HTML filer dynamisk. For å bruke dette må en opprette en mappestruktur med html filer inne i appen du vil lage template for. For oss blir det "nettavis/templates/nettavis/index.html". Må så si hvor templates ligger i settings TEMPLATES DIRS. I filen views.py definerer vi en view som tar inn en request og returnerer en html-fil. For at vi skal kunne komme til denne filen må vi oppdatere url patterns i app/urls.py med viewet vi nettop laget.
+
+### Rendre ting fra databasen med django templates
+For å rendre ting feks en artikkel fra databsen i django tamplates må man legge dette til i views.py ved å importere modellen som et object du har lyst å rendre fra og legge den til i render kallet. I templates kan man så bruke Django template languages for å rendre alle modellene. Man kan bruke "{% for artikkel in artikler.all %} HTML og DJANGO KODE HER{% endfor %}" for å loope igjennom all artikler og en vise tittelen til en artikkel med {{artikkel.tittel}}.
+
+### Legge til css og andre statiske filer.
+Man kan legge til statiske filer som css og logo ved å lage en mappe kalt static/ og legge disse filene inni her. Registrer denne mappen i STATICFILES_DIRS i settings.py og legg til STATIC_ROOT. STATIC_ROOT er mappen django henter filene fra når serverer kjøres. i templates må du loaded static i starten med {% load static %} og man kan da kalle på statiske filer i href med feks: href="{% static 'styles.css' %}.
+
+### Flere urls.py filer
+Det kan være lurt å flytte url logikken fra en django app inn i den appen urlen skal brukes i. I hoved urls.py filen kan man bruke "from django urls import include" og bytte ut view og name med include('nettavis.urls'). Da kan man lage en urls.py i nettavis/ som inneholder de urlene man vil bruke i den appen. dette gjør at vi lett kan bygge videre på urlen /nettavis/ med feks /nettavis/1/ for å vise den første artikkel.
+
+### Dynamiske urler basert på modeller
+Om man skal rendre en arikkel basert på id-en i databasen må man først legge dette til i urlpatterns i nettavis/urls.py. Dette kan gjøre med '<int:artikkel_id>/' som url hvor artikkel_id er det som blir videresendt til viewet man spesifiserer. Dette blir da en parameter i viewet.
+
+```python
+def artikkel_template(request, artikkel_id):
+    artikkel = get_object_or_404(Artikkel, pk=artikkel_id)
+    return render(request,'artikkel.html', {'artikkel': artikkel})
+```
+Django har en annen shortcut en render som heter get_object_or_404. Denne sender returnerer objektet eller en 404 response om objektet man spør etter ikke eksisterer. Ellers er det bare å rendere en artikkel på samme måte som med alle artiklene.
+
+### Formatering av objekter.
+Om man skal ha dato fra et objekt/modell som bruker DateTimeField får man nødvendigvis ikke datoen på formatet man vil. Man kan da lage metoder i modellen for å hjelpe. formater_publisert i models.py returnerer en formatert dato på string format. Man kan kalle på disse i Django templates med {{artikkel.formater_publisert}} istedenfor {{artikkel.publisert}}.
