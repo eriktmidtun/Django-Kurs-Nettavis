@@ -22,7 +22,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('nettavis/', include('nettavis.urls')),
-    path("graphql/", include('graphqlApi.urls'))
+    path("graphql/", include('graphqlApi.urls')),
+    path("restApi/", include('restApi.urls'))
+
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
 )

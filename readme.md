@@ -200,3 +200,18 @@ Da skal man kunne gå til /graphql/ og sende queries på feks formen:
   }
 }
 ```
+
+## Django Rest Framework
+djangorestframework installerers med pip og legges inn i INSTALLED_APPS som rest_framework.
+
+På samme måte som graphql lager vi en ny app med 
+```bash
+django-admin startapp restApi
+```
+her trenger vi ikke models.py og migrations. Men her lager vi også en urls.py og includer den i apps/urls.py. 
+
+Django rest framework bruker serilalizers for å konvertere django modeller til og fra json. Vi lager en serializers.py. Siden vi bare skal konvertere en modell til Json kan vi bruke ModelSerializer. Denne fungerer på en lignende måte som Type i grapql. Vi sier hvilke feilds vi vil ha i class Meta og legger til ekstra feilds om vi trenger det. For å bruke modell methoder kan man spesifiserer serializer typen og pointe til metoden med source. Gjør dette på publiser og sist_oppdatert. 
+
+i restApi/views.py kan vi lage ulike views for ulike kall. Om man skal lage et enkelt GET api kan man bruke APIview og lage get metoder. Der henter man objektet man vil fra databasen, serializer det Json og sender det i response. Kan lage ulike views for ulike ting man vil requeste, feks ArtikkelList for alle artikler og ArtikkelDetail for en spesifikk Artikkel basert på id.
+
+Kan så legge disse viewsene inn i urls og bruke de med .as_view(). 

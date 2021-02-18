@@ -17,3 +17,6 @@ pylint-django==2.4.2
 #Graphql
 graphene==2.1.8
 graphene-django==2.15.0
+
+# rest framework
+djangorestframework==3.12.2
