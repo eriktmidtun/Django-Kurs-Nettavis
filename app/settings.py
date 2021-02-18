@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_summernote',
     'nettavis.apps.NettavisConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -135,3 +136,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.getenv('MEDIA_ROOT',os.path.join(BASE_DIR, "mediafiles"))
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+

@@ -17,7 +17,8 @@
         <p>Skrevet av <b>{{artikkel.skrevet_av}}</b></p>
         <p>Publisert: {{artikkel.formater_publisert}}</p><p> Sist oppdatert:{{artikkel.formater_sist_oppdatert}}</p> 
         </i>
-        <p>{{artikkel.brodtekst}}</p>
+        <hr>
+        {{artikkel.brodtekst|safe}}
     </section>
 </body>
 </html>

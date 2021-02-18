@@ -1,5 +1,8 @@
 from django.contrib import admin
 from .models import Artikkel
+from django_summernote.admin import SummernoteModelAdmin
 
-# Register your models here.
-admin.site.register(Artikkel)
+class ArtikkelAdmin(SummernoteModelAdmin):
+    summernote_fields = ('brodtekst',)
+
+admin.site.register(Artikkel, ArtikkelAdmin)
