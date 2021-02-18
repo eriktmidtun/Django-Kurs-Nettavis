@@ -13,3 +13,7 @@ django-summernote==0.8.11.6
 # lint
 pylint==2.6.2
 pylint-django==2.4.2
+
+#Graphql
+graphene==2.1.8
+graphene-django==2.15.0

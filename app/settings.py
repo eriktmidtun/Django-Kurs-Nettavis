@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,7 @@ MEDIA_ROOT = os.getenv('MEDIA_ROOT',os.path.join(BASE_DIR, "mediafiles"))
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+
+GRAPHENE = {
+    "SCHEMA": "graphqlApi.schema.schema"
+}

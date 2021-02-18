@@ -156,3 +156,47 @@ Django har en annen shortcut en render som heter get_object_or_404. Denne sender
 
 ### Formatering av objekter.
 Om man skal ha dato fra et objekt/modell som bruker DateTimeField får man nødvendigvis ikke datoen på formatet man vil. Man kan da lage metoder i modellen for å hjelpe. formater_publisert i models.py returnerer en formatert dato på string format. Man kan kalle på disse i Django templates med {{artikkel.formater_publisert}} istedenfor {{artikkel.publisert}}.
+
+## Bruke andre pakker
+Det finnes extensions og pakker/moduler som kan brukes for nesten hva som helst. Hvordan disse legges til avhenger av pakken, men en vanlig ting man må gjøre er å laste ned med pip og legge den itl i requirements.txt og legge til pakken i INSTALLED_APPS i settings.py. Et eksempel er What you see is what you get editoren Django-summernote for å gi mer muligheter for å formatere brødteksten.
+
+## Lage GraphQL API
+Å lage grapql api med django er ganske lett. installer graphene-django med pip og i INSTALLED_APPS. Lag ny django app med 
+```bash
+django-admin startapp graphqlApi
+```
+og slett autogenerete filer du ikke trenger som graphqlApi/models.py,  graphqlApi/admin.py ,graphqlApi/apps.py, graphqlApi/views.py og mappen migrations.
+
+Lag en graphqlApi/urls.py og include denne i app/urls.py. Legg til en urlpattern:
+```python
+path("", csrf_exempt(GraphQLView.as_view(graphiql=True)))
+```
+graphiql er interface for å teste grapql, denne kan settes til False i production.
+
+Opprett filen graphqlApi/schema.py og regisrer schema i settings under GRAPHENE.
+
+Importer modellene du vil bruke og lag Types for disse. med class Meta kan man bestemme hvilke fields man skal kunne querye på denne måten vil graphene velge riktige fields. Om man vil ha en annen formatering på feks publisert må man eksludere de fra meta fields, legge de til som ekstra field og resolve de manuelt.
+
+class Query skal inneholde alle querys du vil kunne søke etter. Vi vil ha en måte å søke på alle artikler og en måte å etterspørre en spesifikk artikkel. Disse kan ha parametere for å si feks hvor mange artikler du vil ha eller hvilken id på arikkelen du vil requeste. Kan også bruke hjelpefunkjsoner, men kan være greit å legge disse i en annen fil for å separere logikken.
+
+Til slutt må vi sette 
+```python
+schema = graphene.Schema(query=Query)
+```
+
+Da skal man kunne gå til /graphql/ og sende queries på feks formen:
+```js
+{
+  alleArtikler(count:2) {
+    id
+    tittel
+    bilde
+  }
+  artikkel(id:2){
+    id
+    tittel
+    bilde
+    
+  }
+}
+```
